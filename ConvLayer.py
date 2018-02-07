@@ -4,7 +4,7 @@ import mylib
 #image_shape:(batch size, num input feature maps,image height, image width)
 
 class ConvLayer(object):
-    def __init__(self, rng, input, filter_shape, image_shape, poolsize=(2, 2)):
+    def __init__(self, rng, input, filter_shape, image_shape):
 
         #check parameters
         assert  image_shape[1] == filter_shape[1]
@@ -15,8 +15,8 @@ class ConvLayer(object):
         #fan_in = num input feature maps * filter_height * filter_width
         fan_in = np.prod(filter_shape[1:])
 
-        #fan_out = num output feature maps * filter_height * filter_width / pool_size
-        fan_out = image_shape[1] * np.prod(filter_shape[2:]) / np.prod(image_shape)
+        #fan_out = num output feature maps * filter_height * filter_width
+        fan_out = image_shape[1] * np.prod(filter_shape[2:])
 
         #init weigth with uniformly within the interval [−b,b]
         #b = sqrt(6 / (fan_in + fan_out))
