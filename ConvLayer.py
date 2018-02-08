@@ -23,10 +23,10 @@ class ConvLayer(object):
         W_bound = sqrt(6.0 / (fan_in + fan_out))
         self.W = theano.shared(
             np.asarray(
-                rng.uniform(low = -W_bound, high = W_bound, size=filter_shape),
+                rng.uniform(low=-W_bound, high=W_bound, size=filter_shape),
                 dtype=theano.config.floatX
-                ),
-                borrow=True
+            ),
+            borrow=True
         )
 
         #init bias
