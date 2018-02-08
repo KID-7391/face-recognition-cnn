@@ -9,7 +9,7 @@ class HiddenLayer(object):
         #if use uninitialized parameters
         if W is None:
             W_bound = np.sqrt(6.0 / (n_in + n_out))
-            if activation == theano.tensor.nnet.sigmoid:
+            if activation == T.nnet.sigmoid:
                 W_bound *= 4
             W = theano.shared(
                 np.asarray(
