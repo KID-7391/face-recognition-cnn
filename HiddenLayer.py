@@ -1,12 +1,14 @@
 import mylib
+from mylib import T
+
 
 class HiddenLayer(object):
     def __init__(self, rng, input, n_in, n_out, W=None, b=None, activation=T.tanh):
 
         self.input = input
 
-        #sometimes we use trained parameters to init W and b
-        #if use uninitialized parameters
+        # sometimes we use trained parameters to init W and b
+        # if use uninitialized parameters
         if W is None:
             W_bound = np.sqrt(6.0 / (n_in + n_out))
             if activation == T.nnet.sigmoid:
@@ -29,11 +31,11 @@ class HiddenLayer(object):
                 borrow=True
             )
 
-        #init the parameters of this class
+        # init the parameters of this class
         self.W = W
         self.b = b
 
-        #get output and params
+        # get output and params
         output = T.dot(input, self.W) + self.b
         if activation is None:
             self.output = output

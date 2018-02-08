@@ -1,25 +1,26 @@
 import mylib
 
-#filter_shape:(number of filters, num input feature maps,filter height, filter width)
-#image_shape:(batch size, num input feature maps,image height, image width)
+# filter_shape:(number of filters, num input feature maps,filter height, filter width)
+# image_shape:(batch size, num input feature maps,image height, image width)
+
 
 class ConvLayer(object):
-    def __init__(self, rng, input, filter_shape, image_shape):
+    def __init__(self, rng, input, image_shape, filter_shape):
 
-        #check parameters
+        # check parameters
         assert  image_shape[1] == filter_shape[1]
         self.input = input
 
-        #calculate fan_in and fan_out to init weight
+        # calculate fan_in and fan_out to init weight
 
-        #fan_in = num input feature maps * filter_height * filter_width
+        # fan_in = num input feature maps * filter_height * filter_width
         fan_in = np.prod(filter_shape[1:])
 
-        #fan_out = num output feature maps * filter_height * filter_width
+        # fan_out = num output feature maps * filter_height * filter_width
         fan_out = image_shape[1] * np.prod(filter_shape[2:])
 
-        #init weigth with uniformly within the interval [−b,b]
-        #b = sqrt(6 / (fan_in + fan_out))
+        # init weigth with uniformly within the interval [−b,b]
+        # b = sqrt(6 / (fan_in + fan_out))
         W_bound = sqrt(6.0 / (fan_in + fan_out))
         self.W = theano.shared(
             np.asarray(
@@ -29,7 +30,7 @@ class ConvLayer(object):
             borrow=True
         )
 
-        #init bias
+        # init bias
         self.b = theano.shared(
             value=np.zeros(
                 filter_shape[0], dtype=theano.config.floatX
@@ -37,7 +38,7 @@ class ConvLayer(object):
             borrow=True
         )
 
-        #do convolution
+        # do convolution
         conv_out = conv.conv2d(
             input=input,
             filters=self.W,
@@ -45,6 +46,6 @@ class ConvLayer(object):
             image_shape=image_shape
         )
 
-        #get output and params
+        # get output and params
         self.output = conv_out + self.b.dimshuffle('x', 0, 'x', 'x')
         self.params = [self.W, self.b]
