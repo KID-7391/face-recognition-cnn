@@ -249,7 +249,7 @@ def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
 
             iter = (epoch - 1) * n_train_batches + minibatch_index
             if iter % 100 == 0:
-                print('training @ iter = ', iter)
+                print('training iteration', int(iter))
             cost_ij = train_model(minibatch_index)
 
             #get current losses
@@ -278,16 +278,25 @@ def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
                         test_model(i)
                         for i in range(int(n_test_batches))
                     ]
-                    test_score = np.mean(test_loss)
+                    test_score = 1 - np.mean(test_loss)
 
             if patience <= iter:
                 done_looping = True
                 break
 
+        print(
+            'Epoch', epoch, ':', 'valid scores =', int(100-cur_valid_loss*100), '%',
+            'best valid scores =', int(100 - best_valid_loss*100), '%'
+        )
+
     end_time = time.clock()
 
     #
     ##############
+
+    print('Training complete.')
+    print('Best valid scores =', int(100 - best_valid_loss*100), '%')
+    print('Test accuracy =', int(test_score*100), '%')
 
 
 if __name__ == '__main__':
