@@ -1,4 +1,10 @@
-import mylib
+import numpy as np
+
+import theano
+import theano.tensor as T
+from theano.tensor.signal.pool import pool_2d
+from theano.tensor.nnet import conv
+
 
 # filter_shape:(number of filters, num input feature maps,filter height, filter width)
 # image_shape:(batch size, num input feature maps,image height, image width)
@@ -8,7 +14,7 @@ class ConvLayer(object):
     def __init__(self, rng, input, image_shape, filter_shape):
 
         # check parameters
-        assert  image_shape[1] == filter_shape[1]
+        assert image_shape[1] == filter_shape[1]
         self.input = input
 
         # calculate fan_in and fan_out to init weight
@@ -21,7 +27,7 @@ class ConvLayer(object):
 
         # init weigth with uniformly within the interval [−b,b]
         # b = sqrt(6 / (fan_in + fan_out))
-        W_bound = sqrt(6.0 / (fan_in + fan_out))
+        W_bound = np.sqrt(6.0 / (fan_in + fan_out))
         self.W = theano.shared(
             np.asarray(
                 rng.uniform(low=-W_bound, high=W_bound, size=filter_shape),
@@ -31,12 +37,12 @@ class ConvLayer(object):
         )
 
         # init bias
-        self.b = theano.shared(
-            value=np.zeros(
-                filter_shape[0], dtype=theano.config.floatX
-            ),
-            borrow=True
-        )
+        #self.b = theano.shared(
+        #    value=np.zeros(
+        #        filter_shape[0], dtype=theano.config.floatX
+        #    ),
+        #    borrow=True
+        #)
 
         # do convolution
         conv_out = conv.conv2d(
@@ -47,5 +53,5 @@ class ConvLayer(object):
         )
 
         # get output and params
-        self.output = conv_out + self.b.dimshuffle('x', 0, 'x', 'x')
-        self.params = [self.W, self.b]
+        self.output = conv_out# + self.b.dimshuffle('x', 0, 'x', 'x')
+        self.params = self.W

@@ -1,5 +1,9 @@
-import mylib
-from mylib import T
+import numpy as np
+
+import theano
+import theano.tensor as T
+from theano.tensor.signal.pool import pool_2d
+from theano.tensor.nnet import conv
 
 
 class HiddenLayer(object):
@@ -15,7 +19,7 @@ class HiddenLayer(object):
                 W_bound *= 4
             W = theano.shared(
                 np.asarray(
-                    rng.uniform(low=-W_bound, high=W_bound, size=n_in * n_out),
+                    rng.uniform(low=-W_bound, high=W_bound, size=(n_in, n_out)),
                     dtype=theano.config.floatX
                 ),
                 name='W',

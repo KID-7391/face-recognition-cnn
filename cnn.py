@@ -1,8 +1,79 @@
-import mylib
-import ConvLayer
-import PoolLayer
-import HiddenLayer
-import LogisticRegression
+from ConvLayer import ConvLayer
+from PoolLayer import PoolLayer
+from HiddenLayer import HiddenLayer
+from LogisticRegression import LogisticRegression
+from PIL import Image
+import pickle
+import gzip
+import os
+import sys
+import time
+
+import numpy as np
+
+import theano
+import theano.tensor as T
+from theano.tensor.signal.pool import pool_2d
+from theano.tensor.nnet import conv
+
+
+# save params
+def save_params(param1, param2, param3, param4, param5, param6):
+    write_file = open('params.pkl', 'wb')
+    pickle.dump(param1, write_file, -1)
+    pickle.dump(param2, write_file, -1)
+    pickle.dump(param3, write_file, -1)
+    pickle.dump(param4, write_file, -1)
+    pickle.dump(param5, write_file, -1)
+    pickle.dump(param6, write_file, -1)
+    write_file.close()
+
+
+###########################
+# load data from dataset_path
+# divide it into train_data,valid_data,test_data
+###########################
+def load_data(dataset_path):
+    img = Image.open(dataset_path)
+    img_ndarray = np.asarray(img, dtype='float64') / 256
+    faces = np.empty((400, 2679))
+    for i in range(20):
+        for j in range(20):
+            faces[i*20+j] = np.ndarray.flatten(img_ndarray[i*57:(i+1)*57, j*47:(j+1)*47])
+
+    label = np.empty(400)
+    for i in range(40):
+        label[i*10:(i+1)*10] = i
+    label = label.astype(np.int)
+
+    # divide into 3 sets
+    train_data = np.empty((320, 2679))
+    valid_data = np.empty((40, 2679))
+    test_data = np.empty((40, 2679))
+    train_label = np.empty(320)
+    valid_label = np.empty(40)
+    test_label = np.empty(40)
+
+    for i in range(40):
+        train_data[i*8:i*8+8] = faces[i*10:i*10+8]
+        valid_data[i] = faces[i*10+8]
+        test_data[i] = faces[i*10+9]
+        train_label[i * 8:i * 8 + 8] = label[i * 10:i * 10 + 8]
+        valid_label[i] = label[i * 10 + 8]
+        test_label[i] = label[i * 10 + 9]
+
+    # share dataset
+    def shared_dataset(data_x, data_y, borrow=True):
+        shared_x = theano.shared(np.asarray(data_x, dtype=theano.config.floatX), borrow=borrow)
+        shared_y = theano.shared(np.asarray(data_y, dtype=theano.config.floatX), borrow=borrow)
+        return shared_x, T.cast(shared_y, 'int32')
+
+    train_x, train_y = shared_dataset(train_data, train_label)
+    valid_x, valid_y = shared_dataset(valid_data, valid_label)
+    test_x, test_y = shared_dataset(test_data, test_label)
+
+    return [(train_x, train_y), (valid_x, valid_y), (test_x, test_y)]
+
 
 ###########################
 # this function is used to train cnn
@@ -17,14 +88,13 @@ import LogisticRegression
 ###########################
 
 
-def cnn_train(learning_rate=0.05,n_epochs=200,dataset='olivettifaces.gif',
-              nkerns=[5, 10],batch_size=40):
-
+def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
+              nkerns=[5, 10], batch_size=40):
     ##############
     # part 1
 
     # random number generator
-    rng = np.random.RandomState(54354)
+    rng = np.random.RandomState(58541)
 
     # load data
     # x is input, y is label
@@ -67,7 +137,7 @@ def cnn_train(learning_rate=0.05,n_epochs=200,dataset='olivettifaces.gif',
     # after pooling, feature maps are 26x21
     layer_S2 = PoolLayer(
         input=layer_C1.output,
-        image_shape=(batch_size, nkerns[0], 53, 43),
+        filter_shape=(nkerns[0], 1, 5, 5)
     )
 
     # C3:conv layer, kernel is 5x5
@@ -83,7 +153,7 @@ def cnn_train(learning_rate=0.05,n_epochs=200,dataset='olivettifaces.gif',
     # after pooling, feature maps are 11x8
     layer_S4 = PoolLayer(
         input=layer_C3.output,
-        image_shape=(batch_size, nkerns[1], 22, 17),
+        filter_shape=(nkerns[1], nkerns[0], 5, 5)
     )
 
     # C5:full_connected layer
@@ -98,7 +168,7 @@ def cnn_train(learning_rate=0.05,n_epochs=200,dataset='olivettifaces.gif',
     # F6:logisticregression layer
     layer_F6 = LogisticRegression(
         input=layer_C5.output,
-        n_in=layer_C5.n_out,
+        n_in=2000,
         n_out=40
     )
 
@@ -131,7 +201,7 @@ def cnn_train(learning_rate=0.05,n_epochs=200,dataset='olivettifaces.gif',
     )
 
     #all params
-    params = layer_C1.params + layer_S2.params + layer_C3.params + layer_S4.params + layer_C5.params + layer_F6.params
+    params = [layer_C1.params, layer_S2.params] + [layer_C3.params, layer_S4.params] + layer_C5.params + layer_F6.params
 
     #gradients of parameters
     grads = T.grad(loss, params)
@@ -175,15 +245,16 @@ def cnn_train(learning_rate=0.05,n_epochs=200,dataset='olivettifaces.gif',
     #train cnn with minibatch SGD
     while (epoch < n_epochs) and (not done_looping):
         epoch += 1
-        for minibatch_index in xrange(n_train_batches):
+        for minibatch_index in range(int(n_train_batches)):
 
             iter = (epoch - 1) * n_train_batches + minibatch_index
-
+            if iter % 100 == 0:
+                print('training @ iter = ', iter)
             cost_ij = train_model(minibatch_index)
 
             #get current losses
             if (iter + 1) % valid_frequency == 0:
-                valid_loss = [valid_model(i) for i in xrange(n_valid_batches)]
+                valid_loss = [valid_model(i) for i in range(int(n_valid_batches))]
                 cur_valid_loss = np.mean(valid_loss)
 
                 #if we got better params
@@ -205,7 +276,7 @@ def cnn_train(learning_rate=0.05,n_epochs=200,dataset='olivettifaces.gif',
                     #test it on the test set
                     test_loss = [
                         test_model(i)
-                        for i in xrange(n_test_batches)
+                        for i in range(int(n_test_batches))
                     ]
                     test_score = np.mean(test_loss)
 
