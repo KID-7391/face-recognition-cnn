@@ -16,6 +16,15 @@ import theano.tensor as T
 from theano.tensor.signal.pool import pool_2d
 from theano.tensor.nnet import conv
 
+n_subject = 15
+n_train_data = 7
+n_valid_data = 2
+n_test_data = 2
+hight_filter = 6
+width_filter = 6
+hight_image = 64
+width_image = 64
+size_image = hight_image * width_image
 
 # save params
 def save_params(param1, param2, param3, param4, param5, param6):
@@ -34,33 +43,64 @@ def save_params(param1, param2, param3, param4, param5, param6):
 # divide it into train_data,valid_data,test_data
 ###########################
 def load_data(dataset_path):
-    img = Image.open(dataset_path)
-    img_ndarray = np.asarray(img, dtype='float64') / 256
-    faces = np.empty((400, 2679))
-    for i in range(20):
-        for j in range(20):
-            faces[i*20+j] = np.ndarray.flatten(img_ndarray[i*57:(i+1)*57, j*47:(j+1)*47])
 
-    label = np.empty(400)
-    for i in range(40):
-        label[i*10:(i+1)*10] = i
-    label = label.astype(np.int)
+    # load yale
+    if dataset_path == 'yale':
+        ls = os.listdir(dataset_path)
+        faces = np.empty((165, hight_image * width_image))
+        label = np.empty(165)
+
+        s = [None] * 165
+
+        for i in ls:
+            img = Image.open(dataset_path + '/' + i)
+            img = img.resize((hight_image, width_image))
+            idx = int(i.split('.')[0][1:]) - 1
+            img_ndarry = np.asarray(img, dtype='float64') / 256
+            faces[idx] = np.ndarray.flatten(img_ndarry)
+            label[idx] = idx / 11
+
+        label = label.astype(np.int)
+
+    if dataset_path == 'olivettifaces.gif':
+        img = Image.open(dataset_path)
+        img_ndarray = np.asarray(img, dtype='float64') / 256
+        faces = np.empty((400, 2679))
+        for i in range(20):
+            for j in range(20):
+                faces[i*20+j] = np.ndarray.flatten(img_ndarray[i*57:(i+1)*57, j*47:(j+1)*47])
+
+        label = np.empty(400)
+        for i in range(40):
+            label[i*10:(i+1)*10] = i
+
+        label = label.astype(np.int)
+
 
     # divide into 3 sets
-    train_data = np.empty((320, 2679))
-    valid_data = np.empty((40, 2679))
-    test_data = np.empty((40, 2679))
-    train_label = np.empty(320)
-    valid_label = np.empty(40)
-    test_label = np.empty(40)
+    train_data = np.empty((n_train_data * n_subject, size_image))
+    valid_data = np.empty((n_valid_data * n_subject, size_image))
+    test_data = np.empty((n_test_data * n_subject, size_image))
+    train_label = np.empty(n_train_data * n_subject)
+    valid_label = np.empty(n_valid_data * n_subject)
+    test_label = np.empty(n_test_data * n_subject)
 
-    for i in range(40):
-        train_data[i*8:i*8+8] = faces[i*10:i*10+8]
-        valid_data[i] = faces[i*10+8]
-        test_data[i] = faces[i*10+9]
-        train_label[i * 8:i * 8 + 8] = label[i * 10:i * 10 + 8]
-        valid_label[i] = label[i * 10 + 8]
-        test_label[i] = label[i * 10 + 9]
+    # n_data images per subject
+    n_data = n_train_data + n_valid_data + n_test_data
+
+    for i in range(n_subject):
+        train_data[i*n_train_data:(i+1)*n_train_data] = \
+            faces[i*n_data:i*n_data+n_train_data]
+        valid_data[i*n_valid_data:(i+1)*n_valid_data] = \
+            faces[i*n_data+n_train_data:i*n_data+n_train_data+n_valid_data]
+        test_data[i*n_test_data:(i+1)*n_test_data] = \
+            faces[i*n_data+n_train_data+n_valid_data:(i+1)*n_data]
+        train_label[i * n_train_data:(i + 1) * n_train_data] = \
+            label[i * n_data:i * n_data + n_train_data]
+        valid_label[i * n_valid_data:(i + 1) * n_valid_data] = \
+            label[i * n_data + n_train_data:i * n_data + n_train_data + n_valid_data]
+        test_label[i * n_test_data:(i + 1) * n_test_data] = \
+            label[i * n_data + n_train_data + n_valid_data:(i + 1) * n_data]
 
     # share dataset
     def shared_dataset(data_x, data_y, borrow=True):
@@ -88,8 +128,8 @@ def load_data(dataset_path):
 ###########################
 
 
-def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
-              nkerns=[5, 10], batch_size=40):
+def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
+              nkerns=[10, 20], batch_size=11):
     ##############
     # part 1
 
@@ -121,33 +161,41 @@ def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
     # part 2
 
     # reshape x to a 4d tensor
-    # input image is 57x47
-    layer_C1_input = x.reshape((batch_size, 1, 57, 47))
+    # input image is hight_image x width_image
+    hight_input = hight_image
+    width_input = width_image
+    layer_C1_input = x.reshape((batch_size, 1, hight_image, width_image))
 
-    # C1:conv layer, kernel is 5x5
-    # after convolution, feature maps are 53x43
+    # C1:conv layer, kernel is hight_filter x weight_filter
+    # after convolution, feature maps are
+    # (hight_input-hight_filter+1) x (width_input-width_filter+1)
     layer_C1 = ConvLayer(
         rng,
         input=layer_C1_input,
-        image_shape=(batch_size, 1, 57, 47),
-        filter_shape=(nkerns[0], 1, 5, 5)
+        image_shape=(batch_size, 1, hight_input, width_input),
+        filter_shape=(nkerns[0], 1, hight_filter, width_filter)
     )
+    hight_input = (hight_input-hight_filter+1)
+    width_input = (width_input-width_filter+1)
 
     # S2:pooling layer, kernel is 2x2, step is 2
-    # after pooling, feature maps are 26x21
+    # after pooling, feature maps are input_shape / 2
     layer_S2 = PoolLayer(
         input=layer_C1.output,
-        filter_shape=(nkerns[0], 1, 5, 5)
+        filter_shape=(nkerns[0], 1, hight_filter, width_filter)
     )
+    hight_input = int(hight_input / 2)
+    width_input = int(width_input / 2)
 
-    # C3:conv layer, kernel is 5x5
-    # after convolution, feature maps are 22x17
+    # C3:conv layer
     layer_C3 = ConvLayer(
         rng,
         input=layer_S2.output,
-        image_shape=(batch_size, nkerns[0], 26, 21),
-        filter_shape=(nkerns[1], nkerns[0], 5, 5)
+        image_shape=(batch_size, nkerns[0], hight_input, width_input),
+        filter_shape=(nkerns[1], nkerns[0], hight_filter, width_filter)
     )
+    hight_input = (hight_input - hight_filter + 1)
+    width_input = (width_input - width_filter + 1)
 
     # S4:pooling layer, kernel is 2x2, step is 2
     # after pooling, feature maps are 11x8
@@ -155,13 +203,15 @@ def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
         input=layer_C3.output,
         filter_shape=(nkerns[1], nkerns[0], 5, 5)
     )
+    hight_input = int(hight_input / 2)
+    width_input = int(width_input / 2)
 
     # C5:full_connected layer
     layer_C5_input = layer_S4.output.flatten(2)
     layer_C5 = HiddenLayer(
         rng,
         input=layer_C5_input,
-        n_in=nkerns[1] * 11 * 8,
+        n_in=nkerns[1] * hight_input * width_input,
         n_out=2000,
     )
 
@@ -169,7 +219,7 @@ def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
     layer_F6 = LogisticRegression(
         input=layer_C5.output,
         n_in=2000,
-        n_out=40
+        n_out=n_subject
     )
 
     #
@@ -232,7 +282,7 @@ def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
     patience = 800
     patience_increase = 2
     improvement_threshold = 0.99
-    valid_frequency = min(n_train_batches, patience / 2)
+    valid_frequency = int(min(n_train_batches, patience / 2))
 
     best_valid_loss = np.inf
     best_iter = 0
@@ -295,9 +345,10 @@ def cnn_train(learning_rate=0.05, n_epochs=200, dataset='olivettifaces.gif',
     ##############
 
     print('Training complete.')
+    print('Run time : ', int(end_time - start_time), 'second')
     print('Best valid scores =', int(100 - best_valid_loss*100), '%')
     print('Test accuracy =', int(test_score*100), '%')
 
 
 if __name__ == '__main__':
-    cnn_train()
+    cnn_train(dataset='yale')
