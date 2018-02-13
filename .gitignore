@@ -1,9 +1,0 @@
-.idea
-.gitignore
-pip-selfcheck.json
-include
-lib
-bin
-__pycache__
-yale
-
