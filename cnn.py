@@ -16,10 +16,10 @@ import theano.tensor as T
 from theano.tensor.signal.pool import pool_2d
 from theano.tensor.nnet import conv
 
-n_subject = 15
-n_train_data = 7
-n_valid_data = 2
-n_test_data = 2
+n_subject = 3
+n_train_data = 16
+n_valid_data = 7
+n_test_data = 7
 hight_filter = 6
 width_filter = 6
 hight_image = 64
@@ -43,6 +43,24 @@ def save_params(param1, param2, param3, param4, param5, param6):
 # divide it into train_data,valid_data,test_data
 ###########################
 def load_data(dataset_path):
+
+    # load my data
+    if dataset_path == 'mydata':
+        faces = np.empty((90, 64*64))
+        label = np.empty(90)
+
+        cnt = 0
+        for subject in os.listdir(dataset_path):
+            ls = os.listdir(dataset_path + '/' + subject)
+            for i in ls:
+                img = Image.open(dataset_path + '/' + subject + '/' + i)
+                img_ndarray = np.asarray(img, dtype='float64') / 256
+                faces[cnt] = np.ndarray.flatten(img_ndarray)
+                label[cnt] = cnt / 30
+                cnt += 1
+
+        label = label.astype(np.int)
+
 
     # load yale
     if dataset_path == 'yale':
@@ -129,7 +147,7 @@ def load_data(dataset_path):
 
 
 def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
-              nkerns=[10, 20], batch_size=11):
+              nkerns=[10, 20], batch_size=5):
     ##############
     # part 1
 
@@ -351,4 +369,4 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
 
 
 if __name__ == '__main__':
-    cnn_train(dataset='yale')
+    cnn_train(dataset='mydata')
