@@ -14,7 +14,7 @@ import theano.tensor as T
 
 
 n_subject = 3
-n_test_data = 7
+n_test_data = 10
 hight_filter = 6
 width_filter = 6
 hight_image = 64
@@ -39,8 +39,8 @@ def load_data(dataset_path):
 
     # load mydata
     if dataset_path == 'my_testdata':
-        faces = np.empty((3*7, 64*64))
-        label = np.empty(3*7)
+        faces = np.empty((n_subject * n_test_data, 64*64))
+        label = np.empty(n_subject * n_test_data)
         name = []
         cnt = 0
         for subject in os.listdir('my_testdata'):
@@ -50,7 +50,7 @@ def load_data(dataset_path):
                 img = Image.open('my_testdata' + '/' + subject + '/' +i)
                 img_ndarray = np.asarray(img, dtype='float64') / 256
                 faces[cnt] = np.ndarray.flatten(img_ndarray)
-                label[cnt] = cnt / 7
+                label[cnt] = cnt / n_test_data
                 cnt += 1
 
     label = label.astype(np.int)
@@ -138,14 +138,14 @@ def cnn_use(dataset, nkerns=[10, 20]):
     layer_C5 = HiddenLayer(
         input=layer_C5_input,
         n_in=nkerns[1] * hight_input * width_input,
-        n_out=1000,
+        n_out=2000,
         params=params[4]
     )
 
     # F6:logisticregression layer
     layer_F6 = LogisticRegression(
         input=layer_C5.output,
-        n_in=1000,
+        n_in=2000,
         n_out=n_subject,
         params=params[5]
     )

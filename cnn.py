@@ -17,9 +17,9 @@ from theano.tensor.signal.pool import pool_2d
 from theano.tensor.nnet import conv
 
 n_subject = 3
-n_train_data = 16
-n_valid_data = 7
-n_test_data = 7
+n_train_data = 30
+n_valid_data = 10
+n_test_data = 10
 hight_filter = 6
 width_filter = 6
 hight_image = 64
@@ -46,8 +46,8 @@ def load_data(dataset_path):
 
     # load my data
     if dataset_path == 'mydata':
-        faces = np.empty((90, 64*64))
-        label = np.empty(90)
+        faces = np.empty((150, 64*64))
+        label = np.empty(150)
 
         cnt = 0
         for subject in os.listdir(dataset_path):
@@ -56,7 +56,7 @@ def load_data(dataset_path):
                 img = Image.open(dataset_path + '/' + subject + '/' + i)
                 img_ndarray = np.asarray(img, dtype='float64') / 256
                 faces[cnt] = np.ndarray.flatten(img_ndarray)
-                label[cnt] = cnt / 30
+                label[cnt] = cnt / 50
                 cnt += 1
 
             ls_test = os.listdir('my_testdata' + '/' + subject)
@@ -64,7 +64,7 @@ def load_data(dataset_path):
                 img = Image.open('my_testdata' + '/' + subject + '/' + i)
                 img_ndarray = np.asarray(img, dtype='float64') / 256
                 faces[cnt] = np.ndarray.flatten(img_ndarray)
-                label[cnt] = cnt / 30
+                label[cnt] = cnt / 50
                 cnt += 1
 
         label = label.astype(np.int)
@@ -155,7 +155,7 @@ def load_data(dataset_path):
 
 
 def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
-              nkerns=[10, 20], batch_size=2):
+              nkerns=[10, 20], batch_size=5):
     ##############
     # part 1
 
@@ -238,13 +238,13 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
         rng=rng,
         input=layer_C5_input,
         n_in=nkerns[1] * hight_input * width_input,
-        n_out=1000,
+        n_out=2000,
     )
 
     # F6:logisticregression layer
     layer_F6 = LogisticRegression(
         input=layer_C5.output,
-        n_in=1000,
+        n_in=2000,
         n_out=n_subject
     )
 
@@ -362,7 +362,7 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
 
         print(
             'Epoch', epoch, ':', 'valid scores =', int(100-cur_valid_loss*100), '%',
-            'best valid scores =', int(100 - best_valid_loss*100), '%'
+            'best valid scores =', int(100 - best_valid_loss*100), '%', int(test_score*100)
         )
 
     end_time = time.clock()
