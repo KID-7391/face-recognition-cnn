@@ -7,13 +7,13 @@ from theano.tensor.nnet import conv
 
 
 class HiddenLayer(object):
-    def __init__(self, rng, input, n_in, n_out, W=None, b=None, activation=T.tanh):
+    def __init__(self, input, n_in, n_out, activation=T.tanh, rng=None, params=None):
 
         self.input = input
 
         # sometimes we use trained parameters to init W and b
         # if use uninitialized parameters
-        if W is None:
+        if params is None:
             W_bound = np.sqrt(6.0 / (n_in + n_out))
             if activation == T.nnet.sigmoid:
                 W_bound *= 4
@@ -26,7 +26,6 @@ class HiddenLayer(object):
                 borrow=True
             )
 
-        if b is None:
             b = theano.shared(
                 value=np.zeros(
                     n_out, dtype=theano.config.floatX
@@ -34,6 +33,8 @@ class HiddenLayer(object):
                 name='b',
                 borrow=True
             )
+        else:
+            W, b = params
 
         # init the parameters of this class
         self.W = W

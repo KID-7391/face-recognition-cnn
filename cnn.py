@@ -59,6 +59,14 @@ def load_data(dataset_path):
                 label[cnt] = cnt / 30
                 cnt += 1
 
+            ls_test = os.listdir('my_testdata' + '/' + subject)
+            for i in ls_test:
+                img = Image.open('my_testdata' + '/' + subject + '/' + i)
+                img_ndarray = np.asarray(img, dtype='float64') / 256
+                faces[cnt] = np.ndarray.flatten(img_ndarray)
+                label[cnt] = cnt / 30
+                cnt += 1
+
         label = label.astype(np.int)
 
 
@@ -147,7 +155,7 @@ def load_data(dataset_path):
 
 
 def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
-              nkerns=[10, 20], batch_size=5):
+              nkerns=[10, 20], batch_size=2):
     ##############
     # part 1
 
@@ -188,7 +196,7 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
     # after convolution, feature maps are
     # (hight_input-hight_filter+1) x (width_input-width_filter+1)
     layer_C1 = ConvLayer(
-        rng,
+        rng=rng,
         input=layer_C1_input,
         image_shape=(batch_size, 1, hight_input, width_input),
         filter_shape=(nkerns[0], 1, hight_filter, width_filter)
@@ -207,7 +215,7 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
 
     # C3:conv layer
     layer_C3 = ConvLayer(
-        rng,
+        rng=rng,
         input=layer_S2.output,
         image_shape=(batch_size, nkerns[0], hight_input, width_input),
         filter_shape=(nkerns[1], nkerns[0], hight_filter, width_filter)
@@ -227,16 +235,16 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
     # C5:full_connected layer
     layer_C5_input = layer_S4.output.flatten(2)
     layer_C5 = HiddenLayer(
-        rng,
+        rng=rng,
         input=layer_C5_input,
         n_in=nkerns[1] * hight_input * width_input,
-        n_out=2000,
+        n_out=1000,
     )
 
     # F6:logisticregression layer
     layer_F6 = LogisticRegression(
         input=layer_C5.output,
-        n_in=2000,
+        n_in=1000,
         n_out=n_subject
     )
 
@@ -366,7 +374,6 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
     print('Run time : ', int(end_time - start_time), 'second')
     print('Best valid scores =', int(100 - best_valid_loss*100), '%')
     print('Test accuracy =', int(test_score*100), '%')
-
 
 if __name__ == '__main__':
     cnn_train(dataset='mydata')

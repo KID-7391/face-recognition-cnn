@@ -7,27 +7,32 @@ from theano.tensor.nnet import conv
 
 
 class LogisticRegression(object):
-    def __init__(self, input, n_in, n_out):
+    def __init__(self, input, n_in, n_out, params=None):
 
-        # init weight with 0
-        self.W = theano.shared(
-            np.zeros(
-                (n_in, n_out),
-                dtype=theano.config.floatX
-            ),
-            name='W',
-            borrow=True
-        )
+        # if no params avilabel
+        if params is None:
+            # init weight with 0
+            self.W = theano.shared(
+                np.zeros(
+                    (n_in, n_out),
+                    dtype=theano.config.floatX
+                ),
+                name='W',
+                borrow=True
+            )
 
-        # init bias with 0
-        self.b = theano.shared(
-            np.zeros(
-                (n_out,),
-                dtype=theano.config.floatX
-            ),
-            name='b',
-            borrow=True
-        )
+            # init bias with 0
+            self.b = theano.shared(
+                np.zeros(
+                    (n_out,),
+                    dtype=theano.config.floatX
+                ),
+                name='b',
+                borrow=True
+            )
+        else:
+            self.W, self.b = params
+
 
         # get the prediction probability for each label
         # use softmax as result
