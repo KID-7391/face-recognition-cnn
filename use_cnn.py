@@ -13,7 +13,7 @@ import theano
 import theano.tensor as T
 
 
-n_subject = 3
+n_subject = 9
 n_test_data = 10
 hight_filter = 6
 width_filter = 6
@@ -67,7 +67,7 @@ def load_data(dataset_path):
 #   3.input faces into cnn and output results
 ###########################
 
-def cnn_use(dataset, nkerns=[10, 20]):
+def cnn_use(dataset, nkerns=[8, 12]):
     ##############
     # part 1
     # load testdata

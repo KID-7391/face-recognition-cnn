@@ -2,8 +2,8 @@ import os
 from PIL import Image
 
 
-# dir = os.listdir('mydata_before')
-# for subject in dir:
+#dir = os.listdir('mydata_before')
+#for subject in dir:
 #    in_path = 'mydata_before' + '/' +subject
 #    out_path = 'mydata' + '/' + subject
 #    ls = os.listdir(in_path)
@@ -17,7 +17,7 @@ for subject in dir:
     cnt = 31
     for i in ls:
         img = Image.open('mydata/' + subject + '/' + i).transpose(Image.FLIP_LEFT_RIGHT)
-        img.save('mydata/' + subject + '/' + i.split(' ')[0] + ' (' +str(cnt) + ').bmp')
+        img.save('mydata/' + subject + '/' + i.split(' ')[0] + ' (' + str(cnt) + ').bmp')
         cnt += 1
 
 

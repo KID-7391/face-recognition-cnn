@@ -16,10 +16,11 @@ import theano.tensor as T
 from theano.tensor.signal.pool import pool_2d
 from theano.tensor.nnet import conv
 
-n_subject = 3
-n_train_data = 30
-n_valid_data = 10
+n_subject = 9
+n_train_data = 32
+n_valid_data = 8
 n_test_data = 10
+n_folder = 5
 hight_filter = 6
 width_filter = 6
 hight_image = 64
@@ -46,8 +47,8 @@ def load_data(dataset_path):
 
     # load my data
     if dataset_path == 'mydata':
-        faces = np.empty((150, 64*64))
-        label = np.empty(150)
+        faces = np.empty((50*9, 64*64))
+        label = np.empty(50*9)
 
         cnt = 0
         for subject in os.listdir(dataset_path):
@@ -154,8 +155,8 @@ def load_data(dataset_path):
 ###########################
 
 
-def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
-              nkerns=[10, 20], batch_size=5):
+def cnn_train(learning_rate=0.005, n_epochs=200, dataset='olivettifaces.gif',
+              nkerns=[10, 20], batch_size=10):
     ##############
     # part 1
 
@@ -279,7 +280,7 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
     #all params
     params = [layer_C1.params, layer_S2.params] + [layer_C3.params, layer_S4.params] + layer_C5.params + layer_F6.params
 
-    #gradients of parameters
+    #gradients of parameters,
     grads = T.grad(loss, params)
 
     #update rule
@@ -305,66 +306,79 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
     ##############
     # part 4
 
-    patience = 800
-    patience_increase = 2
-    improvement_threshold = 0.99
-    valid_frequency = int(min(n_train_batches, patience / 2))
-
-    best_valid_loss = np.inf
-    best_iter = 0
     test_score = 0.0
     start_time = time.clock()
+    average_valid_accuracy = 0
 
-    epoch = 0
-    done_looping = False
+    # find best hydra parameters with k-folder cross validation
+    for folder in range(n_folder):
+        print('Training (', folder + 1, '/', n_folder, ')')
 
-    #train cnn with minibatch SGD
-    while (epoch < n_epochs) and (not done_looping):
-        epoch += 1
-        for minibatch_index in range(int(n_train_batches)):
+        # change valid dataset
+        train_x = train_x + valid_x
+        train_y = train_y + valid_y
+        valid_x = train_x[:n_valid_data]
+        valid_y = train_y[:n_valid_data]
+        train_x = train_x[n_valid_data:]
+        train_y = train_y[n_valid_data:]
 
-            iter = (epoch - 1) * n_train_batches + minibatch_index
-            if iter % 100 == 0:
-                print('training iteration', int(iter))
-            cost_ij = train_model(minibatch_index)
+        best_valid_loss = np.inf
+        patience = 600 - 40 * folder
+        patience_increase = 2
+        improvement_threshold = 0.99
+        valid_frequency = int(min(n_train_batches, patience / 2))
+        epoch = 0
+        done_looping = False
 
-            #get current losses
-            if (iter + 1) % valid_frequency == 0:
-                valid_loss = [valid_model(i) for i in range(int(n_valid_batches))]
-                cur_valid_loss = np.mean(valid_loss)
 
-                #if we got better params
-                if cur_valid_loss < best_valid_loss:
+        # train cnn with minibatch SGD
+        while (epoch < n_epochs) and (not done_looping):
+            epoch += 1
+            for minibatch_index in range(int(n_train_batches)):
 
-                    #improve patience if improvement is good enought
-                    if cur_valid_loss < best_valid_loss * improvement_threshold:
-                        patience = max(patience, iter * patience_increase)
+                iter = (epoch - 1) * n_train_batches + minibatch_index
+                if iter % 100 == 0:
+                    print('training iteration', int(iter))
+                cost_ij = train_model(minibatch_index)
 
-                    #save best iteration number
-                    best_valid_loss = cur_valid_loss
-                    best_iter = iter
-                    save_params(
-                        layer_C1.params, layer_S2.params,
-                        layer_C3.params, layer_S4.params,
-                        layer_C5.params, layer_F6.params
-                    )
+                #get current losses
+                if (iter + 1) % valid_frequency == 0:
+                    valid_loss = [valid_model(i) for i in range(int(n_valid_batches))]
+                    cur_valid_loss = np.mean(valid_loss)
 
-                    #test it on the test set
-                    test_loss = [
-                        test_model(i)
-                        for i in range(int(n_test_batches))
-                    ]
-                    test_score = 1 - np.mean(test_loss)
+                    #if we got better params
+                    if cur_valid_loss < best_valid_loss:
 
-            if patience <= iter:
-                done_looping = True
-                break
+                        #improve patience if improvement is good enought
+                        if cur_valid_loss < best_valid_loss * improvement_threshold:
+                            patience = max(patience, iter * patience_increase)
 
-        print(
-            'Epoch', epoch, ':', 'valid scores =', int(100-cur_valid_loss*100), '%',
-            'best valid scores =', int(100 - best_valid_loss*100), '%', int(test_score*100)
-        )
+                        best_valid_loss = cur_valid_loss
+                        save_params(
+                            layer_C1.params, layer_S2.params,
+                            layer_C3.params, layer_S4.params,
+                            layer_C5.params, layer_F6.params
+                        )
 
+                        #test it on the test set
+                        test_loss = [
+                            test_model(i)
+                            for i in range(int(n_test_batches))
+                        ]
+                        test_score = 1 - np.mean(test_loss)
+
+                if patience <= iter:
+                    done_looping = True
+                    break
+
+            print(
+                'Epoch', epoch, ':', 'valid scores =', int(100-cur_valid_loss*100), '%',
+                'best valid scores =', int(100 - best_valid_loss*100), '%'
+            )
+
+        average_valid_accuracy += 100 - best_valid_loss*100
+
+    average_valid_accuracy = int(average_valid_accuracy / 5)
     end_time = time.clock()
 
     #
@@ -372,7 +386,7 @@ def cnn_train(learning_rate=0.01, n_epochs=200, dataset='olivettifaces.gif',
 
     print('Training complete.')
     print('Run time : ', int(end_time - start_time), 'second')
-    print('Best valid scores =', int(100 - best_valid_loss*100), '%')
+    print('Average valid scores =', average_valid_accuracy, '%')
     print('Test accuracy =', int(test_score*100), '%')
 
 if __name__ == '__main__':
