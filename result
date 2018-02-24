@@ -1,0 +1,457 @@
+Training ( 1 / 5 )
+training iteration 0
+Epoch 1 : valid scores = 14.2% best valid scores = 14.2%
+Epoch 2 : valid scores = 14.2% best valid scores = 14.2%
+Epoch 3 : valid scores = 14.2% best valid scores = 14.2%
+Epoch 4 : valid scores = 14.2% best valid scores = 14.2%
+Epoch 5 : valid scores = 14.2% best valid scores = 14.2%
+Epoch 6 : valid scores = 44.2% best valid scores = 44.2%
+Epoch 7 : valid scores = 44.2% best valid scores = 44.2%
+Epoch 8 : valid scores = 44.2% best valid scores = 44.2%
+Epoch 9 : valid scores = 44.2% best valid scores = 44.2%
+Epoch 10 : valid scores = 44.2% best valid scores = 44.2%
+training iteration 300
+Epoch 11 : valid scores = 47.1% best valid scores = 47.1%
+Epoch 12 : valid scores = 47.1% best valid scores = 47.1%
+Epoch 13 : valid scores = 47.1% best valid scores = 47.1%
+Epoch 14 : valid scores = 47.1% best valid scores = 47.1%
+Epoch 15 : valid scores = 47.1% best valid scores = 47.1%
+Epoch 16 : valid scores = 54.2% best valid scores = 54.2%
+Epoch 17 : valid scores = 54.2% best valid scores = 54.2%
+Epoch 18 : valid scores = 54.2% best valid scores = 54.2%
+Epoch 19 : valid scores = 54.2% best valid scores = 54.2%
+Epoch 20 : valid scores = 54.2% best valid scores = 54.2%
+training iteration 600
+Epoch 21 : valid scores = 72.8% best valid scores = 72.8%
+Epoch 22 : valid scores = 72.8% best valid scores = 72.8%
+Epoch 23 : valid scores = 72.8% best valid scores = 72.8%
+Epoch 24 : valid scores = 72.8% best valid scores = 72.8%
+Epoch 25 : valid scores = 72.8% best valid scores = 72.8%
+Epoch 26 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 27 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 28 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 29 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 30 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 31 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 32 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 33 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 34 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 35 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 36 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 37 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 38 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 39 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 40 : valid scores = 84.2% best valid scores = 87.1%
+Epoch 41 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 42 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 43 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 44 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 45 : valid scores = 87.1% best valid scores = 87.1%
+training iteration 1300
+Epoch 46 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 47 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 48 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 49 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 50 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 51 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 52 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 53 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 54 : valid scores = 87.1% best valid scores = 87.1%
+Epoch 55 : valid scores = 87.1% best valid scores = 87.1%
+training iteration 1600
+Epoch 56 : valid scores = 90.0% best valid scores = 90.0%
+Epoch 57 : valid scores = 90.0% best valid scores = 90.0%
+Epoch 58 : valid scores = 90.0% best valid scores = 90.0%
+Epoch 59 : valid scores = 90.0% best valid scores = 90.0%
+Epoch 60 : valid scores = 90.0% best valid scores = 90.0%
+Epoch 61 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 62 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 63 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 64 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 65 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 66 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 67 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 68 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 69 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 70 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 71 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 72 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 73 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 74 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 75 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 76 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 77 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 78 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 79 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 80 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 81 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 82 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 83 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 84 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 85 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 86 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 87 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 88 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 89 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 90 : valid scores = 92.8% best valid scores = 92.8%
+training iteration 2600
+Epoch 91 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 92 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 93 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 94 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 95 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 96 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 97 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 98 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 99 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 100 : valid scores = 91.4% best valid scores = 92.8%
+Training ( 2 / 5 )
+training iteration 0
+Epoch 1 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 2 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 3 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 4 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 5 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 6 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 7 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 8 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 9 : valid scores = 91.4% best valid scores = 91.4%
+Epoch 10 : valid scores = 91.4% best valid scores = 91.4%
+training iteration 300
+Epoch 11 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 12 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 13 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 14 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 15 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 16 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 17 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 18 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 19 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 20 : valid scores = 92.8% best valid scores = 92.8%
+training iteration 600
+Epoch 21 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 22 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 23 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 24 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 25 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 26 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 27 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 28 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 29 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 30 : valid scores = 91.4% best valid scores = 92.8%
+Epoch 31 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 32 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 33 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 34 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 35 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 36 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 37 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 38 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 39 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 40 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 41 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 42 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 43 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 44 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 45 : valid scores = 92.8% best valid scores = 92.8%
+training iteration 1300
+Epoch 46 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 47 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 48 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 49 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 50 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 51 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 52 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 53 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 54 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 55 : valid scores = 92.8% best valid scores = 92.8%
+training iteration 1600
+Epoch 56 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 57 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 58 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 59 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 60 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 61 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 62 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 63 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 64 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 65 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 66 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 67 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 68 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 69 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 70 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 71 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 72 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 73 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 74 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 75 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 76 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 77 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 78 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 79 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 80 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 81 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 82 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 83 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 84 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 85 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 86 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 87 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 88 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 89 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 90 : valid scores = 92.8% best valid scores = 94.2%
+training iteration 2600
+Epoch 91 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 92 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 93 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 94 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 95 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 96 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 97 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 98 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 99 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 100 : valid scores = 92.8% best valid scores = 94.2%
+Training ( 3 / 5 )
+training iteration 0
+Epoch 1 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 2 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 3 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 4 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 5 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 6 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 7 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 8 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 9 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 10 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 300
+Epoch 11 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 12 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 13 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 14 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 15 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 16 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 17 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 18 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 19 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 20 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 600
+Epoch 21 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 22 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 23 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 24 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 25 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 26 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 27 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 28 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 29 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 30 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 31 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 32 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 33 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 34 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 35 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 36 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 37 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 38 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 39 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 40 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 41 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 42 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 43 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 44 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 45 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 1300
+Epoch 46 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 47 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 48 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 49 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 50 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 51 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 52 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 53 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 54 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 55 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 1600
+Epoch 56 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 57 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 58 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 59 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 60 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 61 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 62 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 63 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 64 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 65 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 66 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 67 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 68 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 69 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 70 : valid scores = 94.2% best valid scores = 94.2%
+Training ( 4 / 5 )
+training iteration 0
+Epoch 1 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 2 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 3 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 4 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 5 : valid scores = 92.8% best valid scores = 92.8%
+Epoch 6 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 7 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 8 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 9 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 10 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 300
+Epoch 11 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 12 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 13 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 14 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 15 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 16 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 17 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 18 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 19 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 20 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 600
+Epoch 21 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 22 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 23 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 24 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 25 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 26 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 27 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 28 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 29 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 30 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 31 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 32 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 33 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 34 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 35 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 36 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 37 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 38 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 39 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 40 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 41 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 42 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 43 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 44 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 45 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 1300
+Epoch 46 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 47 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 48 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 49 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 50 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 51 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 52 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 53 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 54 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 55 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 1600
+Epoch 56 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 57 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 58 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 59 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 60 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 61 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 62 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 63 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 64 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 65 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 66 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 67 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 68 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 69 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 70 : valid scores = 94.2% best valid scores = 94.2%
+Training ( 5 / 5 )
+training iteration 0
+Epoch 1 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 2 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 3 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 4 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 5 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 6 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 7 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 8 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 9 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 10 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 300
+Epoch 11 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 12 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 13 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 14 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 15 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 16 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 17 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 18 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 19 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 20 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 600
+Epoch 21 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 22 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 23 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 24 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 25 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 26 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 27 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 28 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 29 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 30 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 31 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 32 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 33 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 34 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 35 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 36 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 37 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 38 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 39 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 40 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 41 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 42 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 43 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 44 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 45 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 1300
+Epoch 46 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 47 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 48 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 49 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 50 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 51 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 52 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 53 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 54 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 55 : valid scores = 94.2% best valid scores = 94.2%
+training iteration 1600
+Epoch 56 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 57 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 58 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 59 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 60 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 61 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 62 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 63 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 64 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 65 : valid scores = 92.8% best valid scores = 94.2%
+Epoch 66 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 67 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 68 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 69 : valid scores = 94.2% best valid scores = 94.2%
+Epoch 70 : valid scores = 94.2% best valid scores = 94.2%
+Training complete.
+Run time :  1203 second
+Average valid scores = 94.0%
+Test accuracy = 93.3%
+
+
+
+Recognize xiechangduan as zhangyujie
+Recognize xiechangduan as linyuanfan
+Recognize liwenrui as zhangyuqing
+Recognize huangzizhou as zhangyujie
+Recognize huangzizhou as luoshanshan
+Recognize huangzizhou as shenzhenfei
+Accracy : 93.3%
+

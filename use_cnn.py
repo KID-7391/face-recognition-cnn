@@ -15,8 +15,8 @@ import theano.tensor as T
 
 n_subject = 9
 n_test_data = 10
-hight_filter = 6
-width_filter = 6
+hight_filter = 5
+width_filter = 5
 hight_image = 64
 width_image = 64
 size_image = hight_image * width_image
@@ -67,7 +67,7 @@ def load_data(dataset_path):
 #   3.input faces into cnn and output results
 ###########################
 
-def cnn_use(dataset, nkerns=[8, 12]):
+def cnn_use(dataset, nkerns=[10, 20]):
     ##############
     # part 1
     # load testdata
@@ -169,7 +169,7 @@ def cnn_use(dataset, nkerns=[8, 12]):
             print('Recognize', name[label[i]], 'as', name[result[i]])
             errors += 1
 
-    print('Accracy :', int(100 * (1 - errors / total_data)), '%')
+    print('Accracy :', str(int(1000 * (1 - errors / total_data))/10)+'%')
 
 
     #

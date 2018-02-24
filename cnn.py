@@ -21,8 +21,8 @@ n_train_data = 32
 n_valid_data = 8
 n_test_data = 10
 n_folder = 5
-hight_filter = 6
-width_filter = 6
+hight_filter = 5
+width_filter = 5
 hight_image = 64
 width_image = 64
 size_image = hight_image * width_image
@@ -155,7 +155,7 @@ def load_data(dataset_path):
 ###########################
 
 
-def cnn_train(learning_rate=0.005, n_epochs=200, dataset='olivettifaces.gif',
+def cnn_train(learning_rate=0.005, n_epochs=100, dataset='olivettifaces.gif',
               nkerns=[10, 20], batch_size=10):
     ##############
     # part 1
@@ -307,7 +307,7 @@ def cnn_train(learning_rate=0.005, n_epochs=200, dataset='olivettifaces.gif',
     # part 4
 
     test_score = 0.0
-    start_time = time.clock()
+    start_time = time.time()
     average_valid_accuracy = 0
 
     # find best hydra parameters with k-folder cross validation
@@ -323,7 +323,7 @@ def cnn_train(learning_rate=0.005, n_epochs=200, dataset='olivettifaces.gif',
         train_y = train_y[n_valid_data:]
 
         best_valid_loss = np.inf
-        patience = 600 - 40 * folder
+        patience = 2000
         patience_increase = 2
         improvement_threshold = 0.99
         valid_frequency = int(min(n_train_batches, patience / 2))
@@ -372,22 +372,22 @@ def cnn_train(learning_rate=0.005, n_epochs=200, dataset='olivettifaces.gif',
                     break
 
             print(
-                'Epoch', epoch, ':', 'valid scores =', int(100-cur_valid_loss*100), '%',
-                'best valid scores =', int(100 - best_valid_loss*100), '%'
+                'Epoch', epoch, ':', 'valid scores =', str(int(1000-cur_valid_loss*1000)/10)+'%',
+                'best valid scores =', str(int(1000 - best_valid_loss*1000)/10)+'%'
             )
 
         average_valid_accuracy += 100 - best_valid_loss*100
 
-    average_valid_accuracy = int(average_valid_accuracy / 5)
-    end_time = time.clock()
+    average_valid_accuracy = int(average_valid_accuracy*2) / 10
+    end_time = time.time()
 
     #
     ##############
 
     print('Training complete.')
     print('Run time : ', int(end_time - start_time), 'second')
-    print('Average valid scores =', average_valid_accuracy, '%')
-    print('Test accuracy =', int(test_score*100), '%')
+    print('Average valid scores =', str(average_valid_accuracy)+'%')
+    print('Test accuracy =', str(int(test_score*1000)/10)+'%')
 
 if __name__ == '__main__':
     cnn_train(dataset='mydata')
